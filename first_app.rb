@@ -39,7 +39,8 @@ get "/lorem/:lip/?:n?" do
   lip = params[:lip]
   n = params[:n].to_i == 0 ? 1 : params[:n].to_i
   if Lipsum.pluck(:name).include?(lip)
-    Lipsum.find_by(name: lip).paragraph*n
+    #Lipsum.find_by(name: lip).paragraph*n  #plain text
+    Lipsum.find_by(name: lip).to_json*n #json
   else
     four
   end
