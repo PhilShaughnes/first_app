@@ -24,6 +24,7 @@ get "/:name" do
 end
 
 get "/lorem/:lip/?:n?" do
+  lip = params[:lip]
   n = params[:n].to_i == 0 ? 1 : params[:n].to_i
-  Lipsum.find_by(name: params[:lip]).text*n
+  list.include?(lip) ? Lipsum.find_by(name: lip).paragraph*n : status(404)
 end
