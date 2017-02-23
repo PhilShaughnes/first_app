@@ -52,5 +52,13 @@ class FirstAppTest < Test::Unit::TestCase
 
   end
 
+  def test_post_new
+    post "/lorem/new",
+      {name: 'ChuckNorris', paragraph: Faker::ChuckNorris.fact}
+    assert last_response.ok?
+    get "/lorem/ChuckNorris"
+    assert last_response.ok?
+    Lipsum.find_by(name: 'ChuckNorris').destroy
+  end
 
 end
