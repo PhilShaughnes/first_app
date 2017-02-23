@@ -66,5 +66,5 @@ class FirstAppTest < Test::Unit::TestCase
     assert last_response.ok?
     Lipsum.find_by(name: name).destroy #comment this out for a fun time
   end
-  
+
 end

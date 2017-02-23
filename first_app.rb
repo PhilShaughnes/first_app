@@ -2,7 +2,7 @@ require 'sinatra'
 require 'sqlite3'
 require 'active_record'
 require_relative 'lipsum'
-require_relative 'migration'
+#require_relative 'migration'
 
 ActiveRecord::Base.establish_connection(
   adapter: "sqlite3",
