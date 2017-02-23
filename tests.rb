@@ -49,22 +49,22 @@ class FirstAppTest < Test::Unit::TestCase
   end
 
   def test_lipsums_page
-    # TODO: Fill me in to check each lipsum you support.
     @jsonlip.each do |k,v|
       get "/lorem/#{k}"
       assert last_response.ok?
       assert_equal v, last_response.body
     end
-
   end
 
   def test_post_new
     post "/lorem/new",
-      {name: 'ChuckNorris', paragraph: Faker::ChuckNorris.fact}
+      {name: Faker::Name.first_name.downcase, paragraph: Faker::ChuckNorris.fact}
     assert last_response.ok?
-    get "/lorem/ChuckNorris"
-    assert last_response.ok?
-    Lipsum.find_by(name: 'ChuckNorris').destroy
-  end
 
+    name = Lipsum.last.name
+    get "/lorem/#{name}"
+    assert last_response.ok?
+    Lipsum.find_by(name: name).destroy #comment this out for a fun time
+  end
+  
 end
